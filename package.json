@@ -1,0 +1,65 @@
+{
+  "name": "vscode-fast-snippets",
+  "displayName": "vscode-fast-snippets",
+  "description": "工作中一些常用的代码片段，及快速生成模版代码",
+  "publisher": "yal",
+  "version": "0.0.3",
+  "engines": {
+    "vscode": "^1.35.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "vscode-plugin-snippets22",
+      "properties": {
+        "addMoudle.cachePath": {
+          "type": "string",
+          "default": "/Users/yangailin/Documents/vscode/demo",
+          "description": "默认的模版缓存地址"
+        },
+        "addMoudle.baseModulePath": {
+          "type": "string",
+          "default": "/Users/yangailin/Documents/vscode/demo/vscode-templetes/module/base",
+          "description": "基础模版地址"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "extension.helloWorld",
+        "title": "Hello World"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "editorFocus",
+          "command": "extension.helloWorld",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "rimraf out && npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "npm run compile && node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^2.2.42",
+    "@types/node": "^10.12.21",
+    "rimraf": "^2.6.3",
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.1",
+    "vscode": "^1.1.28"
+  }
+}
