@@ -48,4 +48,3 @@ exports.addMoudleExtension = (context) => {
         });
     }));
 };
-//# sourceMappingURL=addMoudle.js.map

@@ -3,7 +3,7 @@
   "displayName": "vscode-fast-snippets",
   "description": "工作中一些常用的代码片段，及快速生成模版代码",
   "publisher": "yal",
-  "version": "0.0.11",
+  "version": "0.0.23",
   "engines": {
     "vscode": "^1.35.0"
   },
@@ -39,13 +39,17 @@
       {
         "command": "extension.addMoudle",
         "title": "添加一个模块"
+      },
+      {
+        "command": "extension.downloadTemplete",
+        "title": "下载模版库"
       }
     ],
     "menus": {
       "editor/context": [
         {
           "when": "editorFocus",
-          "command": "extension.helloWorld",
+          "command": "extension.downloadTemplete",
           "group": "navigation"
         }
       ],
@@ -55,7 +59,7 @@
           "group": "navigation"
         },
         {
-          "command": "extension.helloWorld",
+          "command": "extension.downloadTemplete",
           "group": "navigation"
         }
       ]
@@ -71,6 +75,8 @@
   "devDependencies": {
     "@types/mocha": "^2.2.42",
     "@types/node": "^10.12.21",
+    "download-git-repo": "^2.0.0",
+    "git-clone-repo": "^1.0.0",
     "rimraf": "^2.6.3",
     "tslint": "^5.12.1",
     "typescript": "^3.3.1",

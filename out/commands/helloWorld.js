@@ -7,4 +7,3 @@ exports.helloWorldExtension = (context) => {
         vscode.window.showInformationMessage('Hello World！你好，小茗同学！');
     }));
 };
-//# sourceMappingURL=helloWorld.js.map

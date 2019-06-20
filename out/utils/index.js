@@ -93,4 +93,3 @@ exports.copy = (from, to, opts = {}) => {
         }
     }
 };
-//# sourceMappingURL=index.js.map

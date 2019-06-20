@@ -5,4 +5,4 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./helloWorld"));
 __export(require("./addMoudle"));
-//# sourceMappingURL=index.js.map
+__export(require("./downloadTemplete"));
