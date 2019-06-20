@@ -3,7 +3,7 @@
   "displayName": "vscode-fast-snippets",
   "description": "工作中一些常用的代码片段，及快速生成模版代码",
   "publisher": "yal",
-  "version": "0.0.3",
+  "version": "0.0.7",
   "engines": {
     "vscode": "^1.35.0"
   },
@@ -35,6 +35,10 @@
       {
         "command": "extension.helloWorld",
         "title": "Hello World"
+      },
+      {
+        "command": "extension.addMoudle",
+        "title": "添加一个模块"
       }
     ],
     "menus": {
@@ -44,11 +48,21 @@
           "command": "extension.helloWorld",
           "group": "navigation"
         }
+      ],
+      "explorer/context": [
+        {
+          "command": "extension.addMoudle",
+          "group": "navigation"
+        },
+        {
+          "command": "extension.helloWorld",
+          "group": "navigation"
+        }
       ]
     }
   },
   "scripts": {
-    "vscode:prepublish": "rimraf out && npm run compile",
+    "vscode:prepublish": "rimraf out  &&  npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "postinstall": "node ./node_modules/vscode/bin/install",
@@ -61,5 +75,9 @@
     "tslint": "^5.12.1",
     "typescript": "^3.3.1",
     "vscode": "^1.1.28"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/asyalas/vscode-fast-snippets"
   }
 }
