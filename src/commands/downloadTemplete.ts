@@ -1,18 +1,21 @@
 
 import * as vscode from 'vscode';
-import { templetePath, githubName, addMoudleConf } from '../config';
+import { fastSnippetsConfPrefix } from '../config';
+import { templeteMid } from '../middeware'
 
-export const downloadTempleteExtension = (context: vscode.ExtensionContext) => {
+const downloadTemplete = (context: vscode.ExtensionContext) => {
 
   context.subscriptions.push(vscode.commands.registerCommand('extension.downloadTemplete', () => {
-    const { cachePath } = vscode.workspace.getConfiguration(addMoudleConf);
+    const { rootTempletePath, githubProject } = vscode.workspace.getConfiguration(fastSnippetsConfPrefix);
     try {
       vscode.window.showInformationMessage("下载模版。。。");
       const terminal = vscode.window.createTerminal();
-      terminal.sendText(` cd ${cachePath} && git clone ${templetePath}`);
+      terminal.sendText(` cd ${rootTempletePath} && git clone ${githubProject}`);
     } catch (error) {
       vscode.window.showErrorMessage(error);
     }
   }));
 
 };
+
+export const downloadTempleteExtension = templeteMid(downloadTemplete)

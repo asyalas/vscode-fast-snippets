@@ -17,17 +17,17 @@
   "contributes": {
     "configuration": {
       "type": "object",
-      "title": "vscode-plugin-snippets22",
+      "title": "fast-snippets",
       "properties": {
-        "addMoudle.cachePath": {
+        "fast-snippets.githubProject": {
           "type": "string",
-          "default": "/Users/yangailin/Documents/vscode/demo",
-          "description": "默认的模版缓存地址"
+          "default": "https://www.github.com/asyalas/vscode-templetes",
+          "description": "模版地址的github代码仓库地址"
         },
-        "addMoudle.baseModulePath": {
+        "fast-snippets.rootTempletePath": {
           "type": "string",
-          "default": "/Users/yangailin/Documents/vscode/demo/vscode-templetes/module/base",
-          "description": "基础模版地址"
+          "default": "",
+          "description": "本地模版库的路径"
         }
       }
     },
@@ -75,8 +75,6 @@
   "devDependencies": {
     "@types/mocha": "^2.2.42",
     "@types/node": "^10.12.21",
-    "download-git-repo": "^2.0.0",
-    "git-clone-repo": "^1.0.0",
     "rimraf": "^2.6.3",
     "tslint": "^5.12.1",
     "typescript": "^3.3.1",
