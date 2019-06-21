@@ -1,7 +1,7 @@
 
 import * as vscode from 'vscode';
 import { fastSnippetsConfPrefix } from '../config';
-import { templeteMid } from '../middeware'
+import { templeteMid } from '../middeware';
 
 const downloadTemplete = (context: vscode.ExtensionContext) => {
 
@@ -18,4 +18,4 @@ const downloadTemplete = (context: vscode.ExtensionContext) => {
 
 };
 
-export const downloadTempleteExtension = templeteMid(downloadTemplete)
+export const downloadTempleteExtension = templeteMid(downloadTemplete);

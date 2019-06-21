@@ -10,11 +10,11 @@ export const addMoudleExtension = (context: vscode.ExtensionContext) => {
     /**
      * 必须传至少2个值：代码块的相对路径及文件夹名
      */
-    const txt = '请按格式输入 githubModuleName moduleName A=1&B=2';
+    const txt = '请按格式输入 githubModuleName moduleName A=1 B=2';
     vscode.window.showInputBox({
       prompt: txt,
       validateInput: (text: string): string | undefined => {
-        if (!text || text.trim().split(/\s*/g).length < 2) {
+        if (!text || text.trim().split(/\s/g).length < 2) {
           return txt;
         } else {
           return undefined;
@@ -23,7 +23,7 @@ export const addMoudleExtension = (context: vscode.ExtensionContext) => {
     }).then((str: any) => {
 
       const { fsPath } = uri;
-      const [githubModuleName, moduleName, ...opts] = str.trim().split(/\s*/g);
+      const [githubModuleName, moduleName, ...opts] = str.trim().split(/\s/g);
 
       // 如果不是文件夹，报错推出
       if (!fs.statSync(fsPath).isDirectory()) {
@@ -52,12 +52,19 @@ export const addMoudleExtension = (context: vscode.ExtensionContext) => {
       }
 
 
-      // 把文件拷贝到指定目录
+      // 生成可模版编译的对象
+      const options = opts.filter((v: string) => v.includes('='))
+        .reduce((p: any, v: string) => {
+          const arr = v.split('=')
+          p[arr[0]] = arr[1];
+          return p
+        }, {
+            moduleName: moduleName,
+            namespace: moduleName.toLowerCase()
+          });
 
-      copy(modulePath, dirPath, {
-        moduleName: moduleName,
-        namespace: moduleName.toLowerCase()
-      });
+      // 把文件拷贝到指定目录
+      copy(modulePath, dirPath, options);
 
       vscode.window.showInformationMessage("生成模版成功");
     });

@@ -13,7 +13,7 @@ exports.addMoudleExtension = (context) => {
         vscode.window.showInputBox({
             prompt: txt,
             validateInput: (text) => {
-                if (!text || text.trim().split(/\s*/g).length < 2) {
+                if (!text || text.trim().split(/\s/g).length < 2) {
                     return txt;
                 }
                 else {
@@ -22,7 +22,7 @@ exports.addMoudleExtension = (context) => {
             }
         }).then((str) => {
             const { fsPath } = uri;
-            const [githubModuleName, moduleName, ...opts] = str.trim().split(/\s*/g);
+            const [githubModuleName, moduleName, ...opts] = str.trim().split(/\s/g);
             // 如果不是文件夹，报错推出
             if (!fs.statSync(fsPath).isDirectory()) {
                 vscode.window.showErrorMessage("请选择文件夹，再使用该命令");
@@ -44,11 +44,18 @@ exports.addMoudleExtension = (context) => {
             catch (error) {
                 vscode.window.showErrorMessage("创建文件夹失败");
             }
-            // 把文件拷贝到指定目录
-            utils_1.copy(modulePath, dirPath, {
+            // 生成可模版编译的对象
+            const options = opts.filter((v) => v.includes('='))
+                .reduce((p, v) => {
+                const arr = v.split('=');
+                p[arr[0]] = arr[1];
+                return p;
+            }, {
                 moduleName: moduleName,
                 namespace: moduleName.toLowerCase()
             });
+            // 把文件拷贝到指定目录
+            utils_1.copy(modulePath, dirPath, options);
             vscode.window.showInformationMessage("生成模版成功");
         });
     }));

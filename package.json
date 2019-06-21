@@ -3,7 +3,7 @@
   "displayName": "vscode-fast-snippets",
   "description": "工作中一些常用的代码片段，及快速生成模版代码",
   "publisher": "yal",
-  "version": "0.0.23",
+  "version": "0.0.27",
   "engines": {
     "vscode": "^1.35.0"
   },
